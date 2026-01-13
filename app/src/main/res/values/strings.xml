@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">TaskAndGoPro</string>
+    <string name="n_tarefas">Numero De Tarefas</string>
+    <string name="n_tarefas_realizadas">Numero De Tarefas Realizadas</string>
 </resources>

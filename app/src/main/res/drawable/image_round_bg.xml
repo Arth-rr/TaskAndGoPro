@@ -8,5 +8,5 @@
         android:angle="4"
         />
 
-    <corners android:radius="30dp">
+    <corners android:radius="30dp"/>
 </shape>
