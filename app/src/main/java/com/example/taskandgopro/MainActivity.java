@@ -1,6 +1,7 @@
 package com.example.taskandgopro;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -10,7 +11,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
 import com.example.taskandgopro.models.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 
@@ -21,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     //Criar TextView
     private TextView textViewTarefas;
     private TextView textViewTarefasRealizadas;
+    //Criar floating button
+    private FloatingActionButton buttonAddTask;
+
 
 
     @Override
@@ -34,6 +40,27 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        //Linkar o floating button com o xml
+        this.buttonAddTask = findViewById(R.id.buttonAddTask);
+
+        this.buttonAddTask.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Toast.makeText(MainActivity.this, "adicionar tarefa", Toast.LENGTH_SHORT).show();
+                //Criar nova tarefa
+                Task novaTask = new Task("Ver o FCP", true, "Ver o FCP da semana");
+                //Adicionar nova tarefa na lista de tarefas
+                tasksList.add(novaTask);
+
+                //Atualizar xml tarefas
+                updTextTasksNum();
+
+                //Atualizar xml tarefas realizadas
+                updTextDoneTasksNum();
+
+
+            }
+        });
 
         //criar lista de tarefas
         this.tasksList = new ArrayList<>();
@@ -42,11 +69,13 @@ public class MainActivity extends AppCompatActivity {
 
         //Linkar o textview com o xml
         this.textViewTarefas = findViewById(R.id.textViewTarefas);
-        this.textViewTarefas.setText("" + this.tasksList.size());
+        this.updTextTasksNum();
 
-        int numWastDone = this.countDoneTasks();
+        //Linkar o textview com o xml
         this.textViewTarefasRealizadas = findViewById(R.id.textViewTarefasRealizadas);
-        this.textViewTarefasRealizadas.setText("" + numWastDone);
+        this.updTextDoneTasksNum();
+
+
 
         /*Toast.makeText(
             this,
@@ -90,6 +119,18 @@ public class MainActivity extends AppCompatActivity {
         return count;
     }
 
+    /**
+     * Metodo para atualizar tarefas
+     */
+    protected void updTextTasksNum() {
+        int numTarefas = this.tasksList.size();
 
+        this.textViewTarefas.setText("" + numTarefas);
+    }
 
+    protected void updTextDoneTasksNum() {
+        int numWastDone = this.countDoneTasks();
+
+        this.textViewTarefasRealizadas.setText("" + numWastDone);
+    }
 }
