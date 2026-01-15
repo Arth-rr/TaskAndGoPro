@@ -48,16 +48,19 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Toast.makeText(MainActivity.this, "adicionar tarefa", Toast.LENGTH_SHORT).show();
                 //Criar nova tarefa
-                Task novaTask = new Task("Ver o FCP", true, "Ver o FCP da semana");
+                //Task novaTask = new Task("Ver o FCP", true, "Ver o FCP da semana");
                 //Adicionar nova tarefa na lista de tarefas
-                tasksList.add(novaTask);
+                //tasksList.add(novaTask);
 
                 //Atualizar xml tarefas
-                updTextTasksNum();
+                //updTextTasksNum();
 
                 //Atualizar xml tarefas realizadas
-                updTextDoneTasksNum();
+                //updTextDoneTasksNum();
 
+                ModalTarefaSheet modalTarefaSheet = new ModalTarefaSheet();
+
+                modalTarefaSheet.show(getSupportFragmentManager(), "ModalTarefaSheet");
 
             }
         });

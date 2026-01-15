@@ -2,6 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white_glass">#CCFFFFFF</color>
     <color name="blue">#3a86ff</color>
     <color name="blue_glass">#223a86ff</color>
     <color name="purple_two">#8338ec</color>
@@ -17,4 +18,5 @@
     <color name="accent_yellow">#FFECB3</color>
     <color name="text_dark">#212121</color>
     <color name="purple">#5800e2</color>
+
 </resources>
