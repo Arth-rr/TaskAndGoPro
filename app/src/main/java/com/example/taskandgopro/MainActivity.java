@@ -43,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+
+
+        //criar lista de tarefas
+        this.tasksList = new ArrayList<>();
+        //Chamar metodo para criar lista de tarefas
         //Linkar o floating button com o xml
         this.buttonAddTask = findViewById(R.id.buttonAddTask);
 
@@ -50,41 +55,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                ModalTarefaSheet modalTarefaSheet = new ModalTarefaSheet();
-
-                modalTarefaSheet.show(getSupportFragmentManager(), "ModalTarefaSheet");
-
-                getSupportFragmentManager()
-                        .setFragmentResultListener(
-                                "dados_nova_tarefa",
-                                MainActivity.this,
-                                (requestKey, result) -> {
-
-                                    if (result.getString("nome").length() > STRING_TEST_LEGHT && result.getString("descricao").length() > STRING_TEST_LEGHT) {
-                                        String nomeDaTarefa = result.getString("nome");
-                                        String descricaoDaTarefa = result.getString("descricao");
-
-                                        //Criar nova tarefa
-                                        Task novaTask = new Task(nomeDaTarefa, false, descricaoDaTarefa);
-
-                                        //Adicionar nova tarefa na lista de tarefas
-                                        tasksList.add(novaTask);
-
-                                        //Atualizar xml tarefas
-                                        updTextTasksNum();
-
-                                        //Atualizar xml tarefas realizadas
-                                        updTextDoneTasksNum();
-
-                                    }
-                                });
+                buildTasks();
             }
         });
-
-        //criar lista de tarefas
-        this.tasksList = new ArrayList<>();
-        //Chamar metodo para criar lista de tarefas
-        this.buildTasks();
 
         //Linkar o textview com o xml
         this.textViewTarefas = findViewById(R.id.textViewTarefas);
@@ -103,23 +76,38 @@ public class MainActivity extends AppCompatActivity {
 
 
     /**
-     * Metodo para construir a lista de tarefas iniciais
+     * Metodo para Adicionar e cancelar tarefas
      */
     private void buildTasks(){
-        //Criar tarefa t1
-        //Instaciar a classe task
-        Task t1 = new Task("Lavar a Louça", false, "30000 pratos pra lavar");
-        //Criar tarefa t2
-        Task t2 = new Task("Moggar o Fabio", true, "Bro nao sabe tar");
-        //Criar tarefa t3
-        Task t3 = new Task("Tarefa 3", false, "Faz a taré fa 3 da tarefa 3");
 
-        //Adicionar as tarefas na lista
-        tasksList.add(t1);
-        tasksList.add(t2);
-        tasksList.add(t3);
+        ModalTarefaSheet modalTarefaSheet = new ModalTarefaSheet();
 
+        modalTarefaSheet.show(getSupportFragmentManager(), "ModalTarefaSheet");
 
+        getSupportFragmentManager()
+                .setFragmentResultListener(
+                        "dados_nova_tarefa",
+                        MainActivity.this,
+                        (requestKey, result) -> {
+
+                            if (result.getString("nome").length() > STRING_TEST_LEGHT && result.getString("descricao").length() > STRING_TEST_LEGHT) {
+                                String nomeDaTarefa = result.getString("nome");
+                                String descricaoDaTarefa = result.getString("descricao");
+
+                                //Criar nova tarefa
+                                Task novaTask = new Task(nomeDaTarefa, false, descricaoDaTarefa);
+
+                                //Adicionar nova tarefa na lista de tarefas
+                                tasksList.add(novaTask);
+
+                                //Atualizar xml tarefas
+                                updTextTasksNum();
+
+                                //Atualizar xml tarefas realizadas
+                                updTextDoneTasksNum();
+
+                            }
+                        });
     }
 
     /**
