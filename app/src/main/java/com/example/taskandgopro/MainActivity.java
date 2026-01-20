@@ -19,6 +19,9 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Criar variavel de classe
+    public static final int STRING_TEST_LEGHT = 0;
+
     //Criar uma variavel de intancia para controlar tarefas
     private ArrayList<Task> tasksList;
     //Criar TextView
@@ -46,22 +49,35 @@ public class MainActivity extends AppCompatActivity {
         this.buttonAddTask.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toast.makeText(MainActivity.this, "adicionar tarefa", Toast.LENGTH_SHORT).show();
-                //Criar nova tarefa
-                //Task novaTask = new Task("Ver o FCP", true, "Ver o FCP da semana");
-                //Adicionar nova tarefa na lista de tarefas
-                //tasksList.add(novaTask);
-
-                //Atualizar xml tarefas
-                //updTextTasksNum();
-
-                //Atualizar xml tarefas realizadas
-                //updTextDoneTasksNum();
 
                 ModalTarefaSheet modalTarefaSheet = new ModalTarefaSheet();
 
                 modalTarefaSheet.show(getSupportFragmentManager(), "ModalTarefaSheet");
 
+                getSupportFragmentManager()
+                        .setFragmentResultListener(
+                                "dados_nova_tarefa",
+                                MainActivity.this,
+                                (requestKey, result) -> {
+
+                                    if (result.getString("nome").length() > STRING_TEST_LEGHT && result.getString("descricao").length() > STRING_TEST_LEGHT) {
+                                        String nomeDaTarefa = result.getString("nome");
+                                        String descricaoDaTarefa = result.getString("descricao");
+
+                                        //Criar nova tarefa
+                                        Task novaTask = new Task(nomeDaTarefa, false, descricaoDaTarefa);
+
+                                        //Adicionar nova tarefa na lista de tarefas
+                                        tasksList.add(novaTask);
+
+                                        //Atualizar xml tarefas
+                                        updTextTasksNum();
+
+                                        //Atualizar xml tarefas realizadas
+                                        updTextDoneTasksNum();
+
+                                    }
+                                });
             }
         });
 
@@ -78,14 +94,13 @@ public class MainActivity extends AppCompatActivity {
         this.textViewTarefasRealizadas = findViewById(R.id.textViewTarefasRealizadas);
         this.updTextDoneTasksNum();
 
-
-
         /*Toast.makeText(
             this,
             "Neste momento tenho na lista de tarefas: " + tasksList.size() + " tarefas",
             Toast.LENGTH_SHORT).show();
          */
     }
+
 
     /**
      * Metodo para construir a lista de tarefas iniciais
@@ -103,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         tasksList.add(t1);
         tasksList.add(t2);
         tasksList.add(t3);
+
 
     }
 

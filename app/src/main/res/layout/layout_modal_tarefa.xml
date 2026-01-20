@@ -86,18 +86,36 @@
 
                 />
 
-            <Button
-                android:layout_width="120dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/gradient_button"
-                android:text="@string/botao_guardar"
-                android:textColor="@color/white"
-                android:textStyle="bold"
-                android:backgroundTint="@null"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal" >
 
-                />
+                <Button
+                    android:id="@+id/buttonGuardar"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="32dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:background="@drawable/gradient_button"
+                    android:text="@string/botao_guardar"
+                    app:backgroundTint="@null"/>
 
+                <Button
+                    android:id="@+id/buttonCancelar"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="32dp"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:background="@drawable/gradient_button"
+                    android:text="@string/botao_cancelar"
+                    app:backgroundTint="@null"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 
