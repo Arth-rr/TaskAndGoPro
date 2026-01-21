@@ -93,9 +93,11 @@ public class MainActivity extends AppCompatActivity {
                             if (result.getString("nome").length() > STRING_TEST_LEGHT && result.getString("descricao").length() > STRING_TEST_LEGHT) {
                                 String nomeDaTarefa = result.getString("nome");
                                 String descricaoDaTarefa = result.getString("descricao");
+                                Boolean estadoDaTarefa = result.getBoolean("wasDone");
+                                String tipoDaTarefa = result.getString("tipo");
 
                                 //Criar nova tarefa
-                                Task novaTask = new Task(nomeDaTarefa, false, descricaoDaTarefa);
+                                Task novaTask = new Task(nomeDaTarefa, estadoDaTarefa, descricaoDaTarefa, tipoDaTarefa);
 
                                 //Adicionar nova tarefa na lista de tarefas
                                 tasksList.add(novaTask);

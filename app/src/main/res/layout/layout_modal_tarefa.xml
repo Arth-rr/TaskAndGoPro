@@ -83,8 +83,27 @@
                 android:textColor="@color/white"
                 android:textColorHint="@color/white"
                 android:background="@drawable/glass_background_edit_text"
-
                 />
+
+            <Spinner
+                android:id="@+id/spinnerTipoTarefa"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginTop="24dp"
+                />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipEstadoTarefa"
+                android:checkable="true"
+                android:layout_width="wrap_content"
+                android:layout_height="55dp"
+                android:layout_marginTop="24dp"
+                android:text="@string/chip_done"
+                app:chipBackgroundColor="@color/blue_glass"
+                app:chipCornerRadius="25dp"
+                app:chipIcon="@drawable/chip_done_icon"
+
+            />
 
             <LinearLayout
                 android:layout_width="match_parent"
