@@ -75,6 +75,8 @@ public class ModalTarefaSheet extends BottomSheetDialogFragment {
                 Boolean estadoDaTarefa = chipEstadoTarefa.isChecked();
                 String tipoDaTarefa = spinnerTipoTarefa.getSelectedItem().toString();
 
+                //Toast.makeText(v.getContext(), "" + estadoDaTarefa + "||" + chipEstadoTarefa.isChecked(), Toast.LENGTH_SHORT).show();
+
                 Bundle result = new Bundle();
 
                 //Passar os atributos para o bundle
@@ -102,7 +104,7 @@ public class ModalTarefaSheet extends BottomSheetDialogFragment {
             @Override
             public void onClick(View v) {
 
-                Boolean novoValorChip = chipEstadoTarefa.isChecked();
+                //Boolean novoValorChip = chipEstadoTarefa.isChecked();
 
                 alternarDisplayChip();
 

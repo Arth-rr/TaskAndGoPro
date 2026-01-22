@@ -1,5 +1,6 @@
 package com.example.taskandgopro;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewTarefasRealizadas;
     //Criar floating button
     private FloatingActionButton buttonAddTask;
+    private View view2;
 
 
 
@@ -72,6 +74,22 @@ public class MainActivity extends AppCompatActivity {
             "Neste momento tenho na lista de tarefas: " + tasksList.size() + " tarefas",
             Toast.LENGTH_SHORT).show();
          */
+
+        this.view2 = findViewById(R.id.view2);
+        this.view2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Toast.makeText(MainActivity.this, "Clicou na view", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, TaskDetailActivity.class);
+
+                Task taskEnviar = tasksList.get(0);
+
+                intent.putExtra("tarefaEnviada", taskEnviar);
+
+                startActivity(intent);
+            }
+        });
     }
 
 
@@ -108,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
                                 //Atualizar xml tarefas realizadas
                                 updTextDoneTasksNum();
 
+                                //Toast.makeText(MainActivity.this, "" + estadoDaTarefa, Toast.LENGTH_SHORT).show();
+
                             }
                         });
     }
@@ -138,8 +158,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void updTextDoneTasksNum() {
-        int numWastDone = this.countDoneTasks();
+        int numWasDone = this.countDoneTasks();
 
-        this.textViewTarefasRealizadas.setText("" + numWastDone);
+        this.textViewTarefasRealizadas.setText("" +  numWasDone);
     }
 }

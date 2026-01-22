@@ -1,8 +1,9 @@
 package com.example.taskandgopro.models;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Task {
+public class Task implements Serializable {
 
     private String name;
     private Boolean wasDone;
